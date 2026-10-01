@@ -1,0 +1,16 @@
+{
+  "chosen_before_looking": {
+    "email": "Men's e-mail",
+    "metric": "spend",
+    "segments": "Bought men's only minus Bought women's only",
+    "gap": 0.067,
+    "p": 0.81339
+  },
+  "spotted_after_looking": {
+    "email": "Women's e-mail",
+    "metric": "visit",
+    "segments": "Bought women's only minus Bought men's only",
+    "gap": 0.0629,
+    "p": 0.0
+  }
+}
