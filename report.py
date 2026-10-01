@@ -32,22 +32,29 @@ def usd(x, sign=False):
     return f"{'+' if sign and x >= 0 else ''}{'-' if x < 0 else ''}${abs(x):,.2f}"
 
 
-def forest(rows, fmt, title, width=880):
-    """Dot = estimated effect, line = 95% confidence interval, dashed line = no effect."""
+def forest(rows, fmt, title):
+    """Dot = estimated effect, line = 95% confidence interval, dashed line = no effect.
+    Drawn twice: wide (label beside the line) and narrow for phones (label above it); CSS shows one."""
+    return _forest(rows, fmt, title, 880, False) + _forest(rows, fmt, title, 420, True)
+
+
+def _forest(rows, fmt, title, width, narrow):
     lo = min(0, min(r["lo"] for r in rows))
     hi = max(r["hi"] for r in rows)
     pad = (hi - lo) * 0.08
     lo, hi = lo - pad, hi + pad
-    left, right, row_h, top = 200, 120, 34, 30
+    left, right = (0, 90) if narrow else (200, 120)
+    row_h, top = (52, 34) if narrow else (34, 30)
     x = lambda v: left + (v - lo) / (hi - lo) * (width - left - right)
     h = top + row_h * len(rows) + 10
-    s = [f'<svg viewBox="0 0 {width} {h}" role="img" aria-label="{escape(title)}">',
+    s = [f'<svg class="{"narrow" if narrow else "wide"}" viewBox="0 0 {width} {h}" role="img" aria-label="{escape(title)}">',
          f'<text x="0" y="16" class="t">{escape(title)}</text>',
          f'<line x1="{x(0):.1f}" x2="{x(0):.1f}" y1="{top - 6}" y2="{h - 6}" class="z"/>']
     for i, r in enumerate(rows):
-        y = top + row_h * i + row_h / 2
+        y = top + row_h * i + (row_h * 0.68 if narrow else row_h / 2)
         c = r["color"]
-        s += [f'<text x="0" y="{y + 4:.1f}" class="l">{escape(r["label"])}</text>',
+        label_y = y - 14 if narrow else y + 4
+        s += [f'<text x="0" y="{label_y:.1f}" class="l">{escape(r["label"])}</text>',
               f'<line x1="{x(r["lo"]):.1f}" x2="{x(r["hi"]):.1f}" y1="{y:.1f}" y2="{y:.1f}" stroke="{c}" stroke-width="2"/>',
               f'<circle cx="{x(r["diff"]):.1f}" cy="{y:.1f}" r="6" fill="{c}" stroke="#0b0b0b" stroke-width="2"><title>'
               f'{escape(r["label"])}: {fmt(r["diff"])} (95% CI {fmt(r["lo"])} to {fmt(r["hi"])})</title></circle>',
@@ -119,7 +126,8 @@ th,td{{padding:7px 14px 7px 0;border-bottom:1px solid var(--line);text-align:lef
 th{{font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}}
 td.n,th.n{{text-align:right;font-variant-numeric:tabular-nums}}
 figure{{margin:14px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}}
-svg{{display:block;width:100%;height:auto}}
+svg{{display:block;width:100%;height:auto}}svg.narrow{{display:none}}
+@media (max-width:640px){{svg.wide{{display:none}}svg.narrow{{display:block}}svg.narrow .l,svg.narrow .v{{font-size:16px}}svg.narrow .t{{font-size:17px}}}}
 .t{{fill:#f2f2f0;font:500 14px Geist,sans-serif}}.l{{fill:#c9c9c6;font:13px Geist,sans-serif}}.v{{fill:#f2f2f0;font:13px Geist,sans-serif;font-variant-numeric:tabular-nums}}
 .z{{stroke:#5c5c5a;stroke-width:1;stroke-dasharray:4 3}}
 .lg{{display:flex;gap:18px;margin:0 0 6px;font-size:13px;color:var(--dim)}}.lg i{{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}}
