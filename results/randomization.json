@@ -1,0 +1,12 @@
+{
+  "counts": {
+    "Mens E-Mail": 21307,
+    "Womens E-Mail": 21387,
+    "No E-Mail": 21306
+  },
+  "srm_chi2": 0.203,
+  "srm_p": 0.9037,
+  "covariates_checked": 18,
+  "max_abs_smd": 0.0164,
+  "max_abs_smd_at": "history_segment_2) $100 - $200 (Mens E-Mail)"
+}

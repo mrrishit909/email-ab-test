@@ -1,0 +1,37 @@
+group,covariate,treated,control,smd
+Mens E-Mail,recency,5.77364,5.74969,0.00683
+Mens E-Mail,history,242.83593,240.88265,0.00761
+Mens E-Mail,mens,0.55095,0.55322,-0.00458
+Mens E-Mail,womens,0.55142,0.54764,0.00759
+Mens E-Mail,newbie,0.50153,0.50197,-0.00089
+Mens E-Mail,zip_code_Rural,0.1522,0.14733,0.01366
+Mens E-Mail,zip_code_Surburban,0.44591,0.45175,-0.01174
+Mens E-Mail,zip_code_Urban,0.40189,0.40092,0.00197
+Mens E-Mail,channel_Multichannel,0.12095,0.12231,-0.00418
+Mens E-Mail,channel_Phone,0.43366,0.43776,-0.00828
+Mens E-Mail,channel_Web,0.44539,0.43992,0.01101
+Mens E-Mail,history_segment_1) $0 - $100,0.36251,0.35727,0.01092
+Mens E-Mail,history_segment_2) $100 - $200,0.22016,0.22698,-0.01636
+Mens E-Mail,history_segment_3) $200 - $350,0.19196,0.18981,0.00547
+Mens E-Mail,history_segment_4) $350 - $500,0.09842,0.09969,-0.00426
+Mens E-Mail,history_segment_5) $500 - $750,0.07495,0.07754,-0.00974
+Mens E-Mail,"history_segment_6) $750 - $1,000",0.03022,0.02919,0.00607
+Mens E-Mail,"history_segment_7) $1,000 +",0.02178,0.01953,0.01583
+Womens E-Mail,recency,5.76785,5.74969,0.00518
+Womens E-Mail,history,242.53663,240.88265,0.00651
+Womens E-Mail,mens,0.54893,0.55322,-0.00863
+Womens E-Mail,womens,0.5501,0.54764,0.00495
+Womens E-Mail,newbie,0.50325,0.50197,0.00256
+Womens E-Mail,zip_code_Rural,0.14874,0.14733,0.00396
+Womens E-Mail,zip_code_Surburban,0.45121,0.45175,-0.00109
+Womens E-Mail,zip_code_Urban,0.40006,0.40092,-0.00176
+Womens E-Mail,channel_Multichannel,0.12059,0.12231,-0.00528
+Womens E-Mail,channel_Phone,0.44204,0.43776,0.00862
+Womens E-Mail,channel_Web,0.43737,0.43992,-0.00515
+Womens E-Mail,history_segment_1) $0 - $100,0.35695,0.35727,-0.00068
+Womens E-Mail,history_segment_2) $100 - $200,0.22102,0.22698,-0.01429
+Womens E-Mail,history_segment_3) $200 - $350,0.19428,0.18981,0.01135
+Womens E-Mail,history_segment_4) $350 - $500,0.10231,0.09969,0.00868
+Womens E-Mail,history_segment_5) $500 - $750,0.07771,0.07754,0.00065
+Womens E-Mail,"history_segment_6) $750 - $1,000",0.02773,0.02919,-0.00882
+Womens E-Mail,"history_segment_7) $1,000 +",0.02001,0.01953,0.0035
