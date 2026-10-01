@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from abstats import CONTROL, GROUPS, bootstrap, holm, load, means, proportions
+from abstats import CONTROL, GROUPS, bootstrap, fisher, holm, load, means, proportions
 
 HERE = Path(__file__).parent
 METRICS = {"spend": "Spend per customer ($)", "visit": "Visited the site", "conversion": "Bought anything"}
@@ -27,6 +27,7 @@ def compare(d, treated, control):
             r["boot_lo"], r["boot_hi"] = bootstrap(a[m].values, b[m].values)
         else:
             r = proportions(a[m].sum(), len(a), b[m].sum(), len(b))
+            r["p_fisher"] = fisher(a[m], b[m])
         rows.append({"treated_group": treated, "control_group": control, "metric": m, "n_treated": len(a),
                      "n_control": len(b), **r})
     return rows
@@ -44,7 +45,7 @@ def main():
         out.loc[out["control_group"] == g, "control_label"] = GROUPS[g]
     (HERE / "results").mkdir(exist_ok=True)
     out.round(8).to_csv(HERE / "results" / "effects.csv", index=False)
-    show = out[["treated_label", "control_label", "metric", "treated", "control", "diff", "lo", "hi", "lift", "p_holm", "boot_lo", "boot_hi"]]
+    show = out[["treated_label", "control_label", "metric", "treated", "control", "diff", "lo", "hi", "lift", "p_holm", "p_fisher", "boot_lo", "boot_hi"]]
     print(show.round(5).to_string(index=False))
 
 

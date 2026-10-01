@@ -69,6 +69,11 @@ def holm(pvals):
     return adj
 
 
+def fisher(a, b):
+    """Fisher's exact test on two 0/1 columns: exact, so it stays honest when events are rare."""
+    return stats.fisher_exact([[a.sum(), len(a) - a.sum()], [b.sum(), len(b) - b.sum()]])[1]
+
+
 def mde_rate(p0, n, power=0.8):
     """Smallest true difference in a rate the test would catch with the given power (two arms of n)."""
     return (Z95 + stats.norm.ppf(power)) * np.sqrt(2 * p0 * (1 - p0) / n)

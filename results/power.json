@@ -1,0 +1,28 @@
+{
+  "n_per_group": 21306,
+  "control_rates": {
+    "visit": 0.106167,
+    "conversion": 0.005726,
+    "spend": 0.652789
+  },
+  "mde": {
+    "visit": 0.008362,
+    "conversion": 0.002048,
+    "spend": 0.314546
+  },
+  "mde_relative": {
+    "visit": 0.0788,
+    "conversion": 0.3577,
+    "spend": 0.4818
+  },
+  "mens_vs_womens_spend_gap": 0.34541,
+  "customers_per_group_to_detect_gap": 35761,
+  "power_for_gap_at_this_size": 0.58,
+  "aa_reps": 1000,
+  "aa_false_positive_rate": {
+    "visit": 0.049,
+    "conversion": 0.068,
+    "conversion_fisher": 0.047,
+    "spend": 0.052
+  }
+}
